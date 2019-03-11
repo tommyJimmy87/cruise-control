@@ -68,7 +68,7 @@ public class CruiseControlMetricsUtils {
       String securityProtocol = adminClientConfigs.get(AdminClientConfig.SECURITY_PROTOCOL_CONFIG).toString();
 
       // Configure SSL configs (if security protocol is SSL)
-      if (securityProtocol.equals(SecurityProtocol.SSL.name)) {
+      if (securityProtocol.equals(SecurityProtocol.SSL.name) || securityProtocol.equals(SecurityProtocol.SASL_SSL.name)) {
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTMANAGER_ALGORITHM_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEYMANAGER_ALGORITHM_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEYSTORE_TYPE_CONFIG);
