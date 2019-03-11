@@ -241,6 +241,9 @@ public class CruiseControlMetricsReporter implements MetricsReporter, Runnable {
       @Override
       public void onCompletion(RecordMetadata recordMetadata, Exception e) {
         if (e != null) {
+          LOG.error("********************************************************************");
+          e.printStackTrace();
+          LOG.error(e.getMessage());
           LOG.warn("Failed to send Cruise Control metric {}", ccm);
           _numMetricSendFailure++;
         }
