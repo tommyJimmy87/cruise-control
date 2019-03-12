@@ -81,6 +81,9 @@ public class CruiseControlMetricsUtils {
         setPasswordConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEY_PASSWORD_CONFIG);
         setPasswordConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG);
       }else if (securityProtocol.equals(SecurityProtocol.SASL_SSL.name)) {
+        System.out.println("**********************************************");
+        System.out.println("<<<<<<<<<<<<<<<<<   SETTING UP THE SASL SSL CONFIGS   >>>>>>>>>>>>>>>>>");
+        System.out.println("<<<<<<<<<<<<<<<<<   "+configs.getString(SaslConfigs.SASL_JAAS_CONFIG)+"   >>>>>>>>>>>>>>>>>");
         setStringConfigIfExists(configs, adminClientConfigs, SaslConfigs.SASL_JAAS_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTMANAGER_ALGORITHM_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEYMANAGER_ALGORITHM_CONFIG);
