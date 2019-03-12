@@ -9,11 +9,15 @@ import org.apache.kafka.common.config.ConfigException;
 import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.config.SslConfigs;
 import org.apache.kafka.common.security.auth.SecurityProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Properties;
 
 public class CruiseControlMetricsUtils {
 
   public static final long ADMIN_CLIENT_CLOSE_TIMEOUT_MS = 10000;
+  private static final Logger LOG = LoggerFactory.getLogger(CruiseControlMetricsUtils.class);
 
   private CruiseControlMetricsUtils() {
 
@@ -81,9 +85,10 @@ public class CruiseControlMetricsUtils {
         setPasswordConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEY_PASSWORD_CONFIG);
         setPasswordConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG);
       }else if (securityProtocol.equals(SecurityProtocol.SASL_SSL.name)) {
-        System.out.println("**********************************************");
-        System.out.println("<<<<<<<<<<<<<<<<<   SETTING UP THE SASL SSL CONFIGS   >>>>>>>>>>>>>>>>>");
-        System.out.println("<<<<<<<<<<<<<<<<<   "+configs.getString(SaslConfigs.SASL_JAAS_CONFIG)+"   >>>>>>>>>>>>>>>>>");
+        LOG.warn("**********************************************");
+        LOG.warn("<<<<<<<<<<<<<<<<<   SETTING UP THE SASL SSL CONFIGS Pippo  >>>>>>>>>>>>>>>>>");
+        LOG.warn("<<<<<<<<<<<<<<<<<   "+configs.getString(SaslConfigs.SASL_JAAS_CONFIG)+"   >>>>>>>>>>>>>>>>>");
+        
         setStringConfigIfExists(configs, adminClientConfigs, SaslConfigs.SASL_JAAS_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTMANAGER_ALGORITHM_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_KEYMANAGER_ALGORITHM_CONFIG);
