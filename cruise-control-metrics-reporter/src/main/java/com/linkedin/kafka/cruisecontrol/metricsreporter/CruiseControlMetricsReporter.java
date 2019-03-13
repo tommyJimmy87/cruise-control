@@ -13,6 +13,7 @@ import com.linkedin.kafka.cruisecontrol.metricsreporter.metric.YammerMetricProce
 import com.yammer.metrics.Metrics;
 import com.yammer.metrics.core.Metric;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -120,6 +121,13 @@ public class CruiseControlMetricsReporter implements MetricsReporter, Runnable {
     setIfAbsent(producerProps, ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     setIfAbsent(producerProps, ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, MetricSerde.class.getName());
     setIfAbsent(producerProps, ProducerConfig.ACKS_CONFIG, "all");
+
+    Iterator it = producerProps.entrySet().iterator();
+    while (it.hasNext()) {
+        Map.Entry pair = (Map.Entry)it.next();
+        LOG.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>" + pair.getKey() + " = " + pair.getValue());
+    }
+
     _producer = new KafkaProducer<>(producerProps);
 
     _brokerId = Integer.parseInt((String) configs.get(KafkaConfig.BrokerIdProp()));
@@ -164,6 +172,9 @@ public class CruiseControlMetricsReporter implements MetricsReporter, Runnable {
       if (!(e.getCause() instanceof TopicExistsException)) {
         LOG.error("Unable to create Cruise Control topic", e);
       }
+      LOG.warn("**********************************************************");
+      LOG.warn(e.getMessage());
+      e.printStackTrace();
     }
   }
 
