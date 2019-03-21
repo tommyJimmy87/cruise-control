@@ -87,8 +87,8 @@ public class CruiseControlMetricsUtils {
       }else if (securityProtocol.equals(SecurityProtocol.SASL_SSL.name)) {
         LOG.warn("**********************************************");
         LOG.warn("<<<<<<<<<<<<<<<<<   SETTING UP THE SASL SSL CONFIGS Pippo  >>>>>>>>>>>>>>>>>");
-        LOG.warn("<<<<<<<<<<<<<<<<<   "+configs.getString(SaslConfigs.SASL_JAAS_CONFIG)+"   >>>>>>>>>>>>>>>>>");
-        LOG.warn("<<<<<<<<<<<<<<<<<   "+System.getProperty("java.security.auth.login.config")+"   >>>>>>>>>>>>>>>>>");
+        LOG.warn("<<<<<<<<<<<<<<<<<  jaas SASL SSL "+configs.getString(SaslConfigs.SASL_JAAS_CONFIG)+"   >>>>>>>>>>>>>>>>>");
+        LOG.warn("<<<<<<<<<<<<<<<<<  jaas UP THE SASL SSL "+System.getProperty("java.security.auth.login.config")+"   >>>>>>>>>>>>>>>>>");
         adminClientConfigs.put(SaslConfigs.SASL_JAAS_CONFIG, System.getProperty("java.security.auth.login.config"));
         //setStringConfigIfExists(configs, adminClientConfigs, SaslConfigs.SASL_JAAS_CONFIG);
         setStringConfigIfExists(configs, adminClientConfigs, SslConfigs.SSL_TRUSTMANAGER_ALGORITHM_CONFIG);
