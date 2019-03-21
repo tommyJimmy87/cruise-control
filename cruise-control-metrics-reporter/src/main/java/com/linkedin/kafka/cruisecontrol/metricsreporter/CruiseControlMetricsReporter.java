@@ -30,6 +30,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.errors.InterruptException;
 import org.apache.kafka.common.errors.TopicExistsException;
 import org.apache.kafka.common.metrics.KafkaMetric;

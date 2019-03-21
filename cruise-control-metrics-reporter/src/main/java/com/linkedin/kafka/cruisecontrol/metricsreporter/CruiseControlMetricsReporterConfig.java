@@ -12,6 +12,7 @@ import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
+import org.apache.kafka.common.config.SaslConfigs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,6 +97,9 @@ public class CruiseControlMetricsReporterConfig extends AbstractConfig {
         props.put(entry.getKey().replace(PREFIX, ""), entry.getValue());
       }
     }
+    LOG.warn("<<<<<<<<<<<<<<<<< LOGIN AUTH PROP  "+System.getProperty("java.security.auth.login.config")+"   >>>>>>>>>>>>>>>>>");
+    props.put(SaslConfigs.SASL_JAAS_CONFIG, System.getProperty("java.security.auth.login.config"));
+
     return props;
   }
 }
